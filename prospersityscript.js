@@ -544,7 +544,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hideAllFilters();
         updateBackgroundImage('default'); // Reset to default background on clear
         });
-    }, 1000);
+    }, 5000);
 
     // Initialize the form setup
     hideAllFilters(); // Set the default state
