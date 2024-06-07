@@ -421,14 +421,16 @@ document.addEventListener('DOMContentLoaded', function() {
         sortLocationSelect();
     }
 
-    document.querySelectorAll('input[type="radio"][name="Types"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-        if (this.checked) {
-            clickAllClearButtons();
-            updateSelects();
-        }
+    setTimeout(function() {
+        document.querySelectorAll('input[type="radio"][name="Types"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+            if (this.checked) {
+                clickAllClearButtons();
+                updateSelects();
+            }
+            });
         });
-    });
+    }, 3000);
 
     // all other
     var radioButtons = document.querySelectorAll('input[type="radio"][data-name="Types"]');
@@ -544,7 +546,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hideAllFilters();
         updateBackgroundImage('default'); // Reset to default background on clear
         });
-    }, 5000);
+    }, 3000);
 
     // Initialize the form setup
     hideAllFilters(); // Set the default state
@@ -600,38 +602,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function setInputValues(params) {
-    var priceFromInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="from"]');
-    var priceToInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="to"]');
-    var areaFromInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="from"]');
-    var areaToInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="to"]');
-    var plotAreaFromInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="from"]');
-    var plotAreaToInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="to"]');
+        // var priceFromInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="from"]');
+        // var priceToInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="to"]');
+        // var areaFromInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="from"]');
+        // var areaToInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="to"]');
+        // var plotAreaFromInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="from"]');
+        // var plotAreaToInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="to"]');
 
-    if (params.pricefrom && priceFromInput) {
-        priceFromInput.value = params.pricefrom;
-        priceFromInput.classList.add('fs-cmsfilter_active');
+        // if (params.pricefrom && priceFromInput) {
+        //     priceFromInput.value = params.pricefrom;
+        //     priceFromInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.priceto && priceToInput) {
+        //     priceToInput.value = params.priceto;
+        //     priceToInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.areafrom && areaFromInput) {
+        //     areaFromInput.value = params.areafrom;
+        //     areaFromInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.areato && areaToInput) {
+        //     areaToInput.value = params.areato;
+        //     areaToInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.plotareafrom && plotAreaFromInput) {
+        //     plotAreaFromInput.value = (Number(params.plotareafrom) / 10000).toString();
+        //     plotAreaFromInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.plotareato && plotAreaToInput) {
+        //     plotAreaToInput.value = (Number(params.plotareato) / 10000).toString();
+        //     plotAreaToInput.classList.add('fs-cmsfilter_active');
+        // }
     }
-    if (params.priceto && priceToInput) {
-        priceToInput.value = params.priceto;
-        priceToInput.classList.add('fs-cmsfilter_active');
-    }
-    if (params.areafrom && areaFromInput) {
-        areaFromInput.value = params.areafrom;
-        areaFromInput.classList.add('fs-cmsfilter_active');
-    }
-    if (params.areato && areaToInput) {
-        areaToInput.value = params.areato;
-        areaToInput.classList.add('fs-cmsfilter_active');
-    }
-    if (params.plotareafrom && plotAreaFromInput) {
-        plotAreaFromInput.value = (Number(params.plotareafrom) / 10000).toString();
-        plotAreaFromInput.classList.add('fs-cmsfilter_active');
-    }
-    if (params.plotareato && plotAreaToInput) {
-        plotAreaToInput.value = (Number(params.plotareato) / 10000).toString();
-        plotAreaToInput.classList.add('fs-cmsfilter_active');
-    }
-}
 
     // Get URL parameters
     var queryParams = getQueryParams();

@@ -420,15 +420,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         sortLocationSelect();
     }
-
-    document.querySelectorAll('input[type="radio"][name="Types"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-        if (this.checked) {
-            clickAllClearButtons();
-            updateSelects();
-        }
+    setTimeout(function() {
+        document.querySelectorAll('input[type="radio"][name="Types"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+            if (this.checked) {
+                clickAllClearButtons();
+                updateSelects();
+            }
+            });
         });
-    });
+    }, 3000);
 
     // all other
     var radioButtons = document.querySelectorAll('input[type="radio"][data-name="Types"]');
@@ -537,12 +538,14 @@ document.addEventListener('DOMContentLoaded', function() {
         radioButton.addEventListener('click', handleRadioButtonChange);
     });
 
-    clearLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        clearFilters();
-        hideAllFilters();
-        updateBackgroundImage('default'); // Reset to default background on clear
-    });
+    setTimeout(function() {
+        clearLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            clearFilters();
+            hideAllFilters();
+            updateBackgroundImage('default'); // Reset to default background on clear
+        });
+    }, 3000);
 
     // Initialize the form setup
     hideAllFilters(); // Set the default state
@@ -598,49 +601,48 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function setInputValues(params) {
-    var priceFromInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="from"]');
-    var priceToInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="to"]');
-    var areaFromInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="from"]');
-    var areaToInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="to"]');
-    var plotAreaFromInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="from"]');
-    var plotAreaToInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="to"]');
+        // var priceFromInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="from"]');
+        // var priceToInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="to"]');
+        // var areaFromInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="from"]');
+        // var areaToInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="to"]');
+        // var plotAreaFromInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="from"]');
+        // var plotAreaToInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="to"]');
 
-    if (params.pricefrom && priceFromInput) {
-        priceFromInput.value = params.pricefrom;
-        priceFromInput.classList.add('fs-cmsfilter_active');
+        // if (params.pricefrom && priceFromInput) {
+        //     priceFromInput.value = params.pricefrom;
+        //     priceFromInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.priceto && priceToInput) {
+        //     priceToInput.value = params.priceto;
+        //     priceToInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.areafrom && areaFromInput) {
+        //     areaFromInput.value = params.areafrom;
+        //     areaFromInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.areato && areaToInput) {
+        //     areaToInput.value = params.areato;
+        //     areaToInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.plotareafrom && plotAreaFromInput) {
+        //     plotAreaFromInput.value = (Number(params.plotareafrom) / 10000).toString();
+        //     plotAreaFromInput.classList.add('fs-cmsfilter_active');
+        // }
+        // if (params.plotareato && plotAreaToInput) {
+        //     plotAreaToInput.value = (Number(params.plotareato) / 10000).toString();
+        //     plotAreaToInput.classList.add('fs-cmsfilter_active');
+        // }
     }
-    if (params.priceto && priceToInput) {
-        priceToInput.value = params.priceto;
-        priceToInput.classList.add('fs-cmsfilter_active');
-    }
-    if (params.areafrom && areaFromInput) {
-        areaFromInput.value = params.areafrom;
-        areaFromInput.classList.add('fs-cmsfilter_active');
-    }
-    if (params.areato && areaToInput) {
-        areaToInput.value = params.areato;
-        areaToInput.classList.add('fs-cmsfilter_active');
-    }
-    if (params.plotareafrom && plotAreaFromInput) {
-        plotAreaFromInput.value = (Number(params.plotareafrom) / 10000).toString();
-        plotAreaFromInput.classList.add('fs-cmsfilter_active');
-    }
-    if (params.plotareato && plotAreaToInput) {
-        plotAreaToInput.value = (Number(params.plotareato) / 10000).toString();
-        plotAreaToInput.classList.add('fs-cmsfilter_active');
-    }
-}
 
     // Get URL parameters
     var queryParams = getQueryParams();
 
-    // Set input values based on URL parameters
-    setInputValues(queryParams);
+    //setInputValues(queryParams);
 
     if (queryParams.object) {
         var objectValue = queryParams.object;
-        var targetRadioButton = Array.from(radioButtons).find(radio => radio.value.toLowerCase() === objectValue);
-        if (objectValue == "apartment") {
+        var targetRadioButton = Array.from(radioButtons).find(radio => radio.value === objectValue);
+        if (objectValue == "Apartment") {
         var targetRadioButton = Array.from(radioButtons).find(radio => radio.value.toLowerCase() === "flat");
         }
         if (targetRadioButton) {
@@ -667,7 +669,7 @@ document.addEventListener('DOMContentLoaded', function() {
         var matched = false;
 
         options.forEach(function(option, index) {
-        if (option.value.toLowerCase() === queryParams.location.toLowerCase()) {
+        if (option.value === queryParams.location) {
             selectElement.selectedIndex = index; // Set the select index directly
             matched = true;
             // Trigger change event
@@ -677,9 +679,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (!matched) {
-        const option = new Option(getUpperCamelCase(queryParams.location), getUpperCamelCase(queryParams.location));
+        const option = new Option(queryParams.location, queryParams.location);
         selectElement.appendChild(option);
-        selectElement.value = getUpperCamelCase(queryParams.location); // Set the new option as selected
+        selectElement.value = queryParams.location; // Set the new option as selected
         // Trigger change event
         var event = new Event('change');
         selectElement.dispatchEvent(event);
@@ -691,7 +693,4 @@ document.addEventListener('DOMContentLoaded', function() {
         clearFilters();
     }
 
-    function getUpperCamelCase(str) {
-        return str[0].toUpperCase() + str.slice(1);
-    }
 });
