@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function clearSelectOptions(select) {
         // Keep the first option and remove the rest
         while (select.options.length > 1) {
-            select.remove(1);
+        select.remove(1);
         }
     }
 
@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Iterate over each div and remove the 'w--redirected-checked' class if it exists
         radioInputDivs.forEach(function(div) {
-            if (div.classList.contains('w--redirected-checked')) {
+        if (div.classList.contains('w--redirected-checked')) {
                 div.classList.remove('w--redirected-checked');
-            }
+        }
         });
     }
-
+        
     function sortLocationSelect() {
         const locationSelect = document.getElementById('state-select');
         const specialOptions = ["м. Київ", "Київська область"];
@@ -42,19 +42,19 @@ document.addEventListener('DOMContentLoaded', function() {
         let seenOther = new Set();
 
         Array.from(locationSelect.options).forEach(option => {
-            if (option.value != "") {
-                if (specialOptions.includes(option.value)) {
+        if (option.value != ""){
+            if (specialOptions.includes(option.value)) {
                     if (!seenSpecial.has(option.value)) {
-                        seenSpecial.add(option.value);
-                        specialOptionsElements.push(option);
+                    seenSpecial.add(option.value);
+                    specialOptionsElements.push(option);
                     }
-                } else {
+            } else {
                     if (!seenOther.has(option.value)) {
-                        seenOther.add(option.value);
-                        otherOptions.push(option);
+                    seenOther.add(option.value);
+                    otherOptions.push(option);
                     }
-                }
             }
+        }
         });
 
         // Sort the remaining options alphabetically by text
@@ -69,31 +69,31 @@ document.addEventListener('DOMContentLoaded', function() {
         // Append the sorted options
         otherOptions.forEach(option => locationSelect.appendChild(option));
     }
-
+    
     function parseCatalogStreets() {
         const streetsWrapper = document.querySelector('.catalog-hidden-street');
         const items = streetsWrapper.querySelectorAll('.catalog-hidden-item');
         let catalogData = {};
 
         items.forEach(item => {
-            const state = item.querySelector('.fl-state').textContent.trim();
-            const region = item.querySelector('.fl-region').textContent.trim();
-            const settlement = item.querySelector('.fl-settlement').textContent.trim();
-            const street = item.querySelector('.fl-street-jk').textContent.trim();
+        const state = item.querySelector('.fl-state').textContent.trim();
+        const region = item.querySelector('.fl-region').textContent.trim();
+        const settlement = item.querySelector('.fl-settlement').textContent.trim();
+        const street = item.querySelector('.fl-street-jk').textContent.trim();
 
-            if (!catalogData[state]) {
+        if (!catalogData[state]) {
                 catalogData[state] = {};
-            }
-            if (!catalogData[state][region]) {
+        }
+        if (!catalogData[state][region]) {
                 catalogData[state][region] = {};
-            }
-            if (!catalogData[state][region][settlement]) {
+        }
+        if (!catalogData[state][region][settlement]) {
                 catalogData[state][region][settlement] = {};
-            }
-            if (!catalogData[state][region][settlement][street]) {
+        }
+        if (!catalogData[state][region][settlement][street]) {
                 catalogData[state][region][settlement][street] = {};
-            }
-            //catalogData[state][region][settlement].push(street);
+        }
+        //catalogData[state][region][settlement].push(street);
         });
 
         return catalogData;
@@ -105,56 +105,57 @@ document.addEventListener('DOMContentLoaded', function() {
         let catalogData = {};
 
         items.forEach(item => {
-            const state = item.querySelector('.fl-state').textContent.trim();
-            const region = item.querySelector('.fl-region').textContent.trim();
-            const settlement = item.querySelector('.fl-settlement').textContent.trim();
-            const jk = item.querySelector('.fl-street-jk').textContent.trim();
+        const state = item.querySelector('.fl-state').textContent.trim();
+        const region = item.querySelector('.fl-region').textContent.trim();
+        const settlement = item.querySelector('.fl-settlement').textContent.trim();
+        const jk = item.querySelector('.fl-street-jk').textContent.trim();
 
-            if (!catalogData[state]) {
+        if (!catalogData[state]) {
                 catalogData[state] = {};
-            }
-            if (!catalogData[state][region]) {
+        }
+        if (!catalogData[state][region]) {
                 catalogData[state][region] = {};
-            }
-            if (!catalogData[state][region][settlement]) {
+        }
+        if (!catalogData[state][region][settlement]) {
                 catalogData[state][region][settlement] = {};
-            }
-            if (!catalogData[state][region][settlement][jk]) {
+        }
+        if (!catalogData[state][region][settlement][jk]) {
                 catalogData[state][region][settlement][jk] = {};
-            }
-            //catalogData[state][region][settlement].push(street);
+        }
+        //catalogData[state][region][settlement].push(street);
         });
 
         return catalogData;
     }
-
+    
     function parseCatalogLand() {
         const landWrapper = document.querySelector('.catalog-hidden-land');
         if (!landWrapper) {
-            return {};
+        return {};
         }
 
         const items = landWrapper.querySelectorAll('.catalog-hidden-item');
         let catalogData = {};
-
+        
         items.forEach(item => {
-            const state = item.querySelector('.fl-state').textContent.trim();
-            const region = item.querySelector('.fl-region').textContent.trim();
-            const settlement = item.querySelector('.fl-settlement').textContent.trim();
+        const state = item.querySelector('.fl-state').textContent.trim();
+        const region = item.querySelector('.fl-region').textContent.trim();
+        const settlement = item.querySelector('.fl-settlement').textContent.trim();
 
-            if (!catalogData[state]) {
-                if (state != "") {
-                    catalogData[state] = {};
-                } else {
-                    return catalogData;
-                }
+        if (!catalogData[state]) {
+            if (state != ""){
+                catalogData[state] = {};
             }
-            if (!catalogData[state][region]) {
+            else {
+                return catalogData;
+            } 
+        }
+        if (!catalogData[state][region]) {
                 catalogData[state][region] = {};
-            }
-            if (!catalogData[state][region][settlement]) {
+        }
+        if (!catalogData[state][region][settlement]) {
                 catalogData[state][region][settlement] = {};
-            }
+        }
         });
 
         return catalogData;
@@ -163,30 +164,31 @@ document.addEventListener('DOMContentLoaded', function() {
     function parseCatalogAll() {
         const allWrapper = document.querySelector('.catalog-hidden-all');
         if (!allWrapper) {
-            return {};
+        return {};
         }
 
         const items = allWrapper.querySelectorAll('.catalog-hidden-item');
         let catalogData = {};
-
+        
         items.forEach(item => {
-            const state = item.querySelector('.fl-state').textContent.trim();
-            const region = item.querySelector('.fl-region').textContent.trim();
-            const settlement = item.querySelector('.fl-settlement').textContent.trim();
+        const state = item.querySelector('.fl-state').textContent.trim();
+        const region = item.querySelector('.fl-region').textContent.trim();
+        const settlement = item.querySelector('.fl-settlement').textContent.trim();
 
-            if (!catalogData[state]) {
-                if (state != "") {
-                    catalogData[state] = {};
-                } else {
-                    return catalogData;
-                }
+        if (!catalogData[state]) {
+            if (state != ""){
+                catalogData[state] = {};
             }
-            if (!catalogData[state][region]) {
+            else {
+                return catalogData;
+            } 
+        }
+        if (!catalogData[state][region]) {
                 catalogData[state][region] = {};
-            }
-            if (!catalogData[state][region][settlement]) {
+        }
+        if (!catalogData[state][region][settlement]) {
                 catalogData[state][region][settlement] = {};
-            }
+        }
         });
 
         return catalogData;
@@ -224,31 +226,32 @@ document.addEventListener('DOMContentLoaded', function() {
         var selectedRadio = document.querySelector('input[type="radio"][data-name="Types"]:checked');
 
         if (!selectedRadio) {
-            var selectedValue = "else";
-        } else {
-            var selectedValue = selectedRadio.value.toLowerCase();
+        var selectedValue = "else";
         }
-        console.log(jsonDataStreets);
-        if (selectedValue == "Commercial" || selectedValue == "House") {
-            // Populate state select
-            Object.keys(jsonDataStreets).forEach(state => {
+        else {  
+        var selectedValue = selectedRadio.value.toLowerCase();
+        }
+        
+        if (selectedValue == "commercial" || selectedValue == "house") {
+        // Populate state select
+        Object.keys(jsonDataStreets).forEach(state => {
                 const option = new Option(state, state);
                 stateSelect.appendChild(option);
-            });
+        });
 
-            // Handle state select changes
-            stateSelect.addEventListener('change', () => {
+        // Handle state select changes
+        stateSelect.addEventListener('change', () => {
                 regionSelect.innerHTML = '<option value="">Район</option>';
                 regionSelect.disabled = true; // Disable region select until a state is chosen
                 settlementSelect.disabled = true;
                 streetSelect.disabled = true;
-
+            
 
                 if (stateSelect.value) {
                     const regions = jsonDataStreets[stateSelect.value];
                     Object.keys(regions).forEach(region => {
-                        const option = new Option(region, region);
-                        regionSelect.appendChild(option);
+                    const option = new Option(region, region);
+                    regionSelect.appendChild(option);
                     });
                     regionSelect.disabled = false; // Enable region select
                 }
@@ -259,38 +262,38 @@ document.addEventListener('DOMContentLoaded', function() {
                     streetSelect.disabled = true;
 
                     if (regionSelect.value) {
-                        const settlements = jsonDataStreets[stateSelect.value][regionSelect.value];
-                        Object.keys(settlements).forEach(settlement => {
+                    const settlements = jsonDataStreets[stateSelect.value][regionSelect.value];
+                    Object.keys(settlements).forEach(settlement => {
                             const option = new Option(settlement, settlement);
                             settlementSelect.appendChild(option);
-                        });
-                        settlementSelect.disabled = false;
+                    });
+                    settlementSelect.disabled = false;
                     }
 
                     settlementSelect.addEventListener('change', () => {
-                        streetSelect.innerHTML = '<option value="">Вулиця</option>';
-                        streetSelect.disabled = true;
+                    streetSelect.innerHTML = '<option value="">Вулиця</option>';
+                    streetSelect.disabled = true;
 
-                        if (settlementSelect.value) {
+                    if (settlementSelect.value) {
                             const streets = jsonDataStreets[stateSelect.value][regionSelect.value][settlementSelect.value];
                             Object.keys(streets).forEach(street => {
                                 const option = new Option(street, street);
                                 streetSelect.appendChild(option);
                             });
                             streetSelect.disabled = false;
-                        }
+                    }
                     });
                 });
-            });
-        } else if (selectedValue == "Flat") {
-            // Populate state select
-            Object.keys(jsonDataJKs).forEach(state => {
+        });
+        } else if (selectedValue == "flat") {
+        // Populate state select
+        Object.keys(jsonDataJKs).forEach(state => {
                 const option = new Option(state, state);
                 stateSelect.appendChild(option);
-            });
+        });
 
-            // Handle state select changes
-            stateSelect.addEventListener('change', () => {
+        // Handle state select changes
+        stateSelect.addEventListener('change', () => {
                 regionSelect.innerHTML = '<option value="">Район</option>';
                 regionSelect.disabled = true; // Disable region select until a state is chosen
                 settlementSelect.disabled = true;
@@ -299,8 +302,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (stateSelect.value) {
                     const regions = jsonDataJKs[stateSelect.value];
                     Object.keys(regions).forEach(region => {
-                        const option = new Option(region, region);
-                        regionSelect.appendChild(option);
+                    const option = new Option(region, region);
+                    regionSelect.appendChild(option);
                     });
                     regionSelect.disabled = false; // Enable region select
                 }
@@ -311,38 +314,38 @@ document.addEventListener('DOMContentLoaded', function() {
                     jkSelect.disabled = true;
 
                     if (regionSelect.value) {
-                        const settlements = jsonDataJKs[stateSelect.value][regionSelect.value];
-                        Object.keys(settlements).forEach(settlement => {
+                    const settlements = jsonDataJKs[stateSelect.value][regionSelect.value];
+                    Object.keys(settlements).forEach(settlement => {
                             const option = new Option(settlement, settlement);
                             settlementSelect.appendChild(option);
-                        });
-                        settlementSelect.disabled = false;
+                    });
+                    settlementSelect.disabled = false;
                     }
 
                     settlementSelect.addEventListener('change', () => {
-                        jkSelect.innerHTML = '<option value="">ЖК</option>';
-                        jkSelect.disabled = true;
+                    jkSelect.innerHTML = '<option value="">ЖК</option>';
+                    jkSelect.disabled = true;
 
-                        if (settlementSelect.value) {
+                    if (settlementSelect.value) {
                             const jks = jsonDataJKs[stateSelect.value][regionSelect.value][settlementSelect.value];
                             Object.keys(jks).forEach(jk => {
                                 const option = new Option(jk, jk);
                                 jkSelect.appendChild(option);
                             });
                             jkSelect.disabled = false;
-                        }
+                    }
                     });
                 });
-            });
-        } else if (selectedValue == "Land") {
-            // Populate state select
-            Object.keys(jsonDataLand).forEach(state => {
+        });
+        } else if (selectedValue == "land") { 
+        // Populate state select
+        Object.keys(jsonDataLand).forEach(state => {
                 const option = new Option(state, state);
                 stateSelect.appendChild(option);
-            });
+        });
 
-            // Handle state select changes
-            stateSelect.addEventListener('change', () => {
+        // Handle state select changes
+        stateSelect.addEventListener('change', () => {
                 regionSelect.innerHTML = '<option value="">Район</option>';
                 regionSelect.disabled = true; // Disable region select until a state is chosen
                 settlementSelect.disabled = true;
@@ -354,8 +357,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (stateSelect.value) {
                     const regions = jsonDataLand[stateSelect.value];
                     Object.keys(regions).forEach(region => {
-                        const option = new Option(region, region);
-                        regionSelect.appendChild(option);
+                    const option = new Option(region, region);
+                    regionSelect.appendChild(option);
                     });
                     regionSelect.disabled = false; // Enable region select
                 }
@@ -365,24 +368,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     settlementSelect.disabled = true;
 
                     if (regionSelect.value) {
-                        const settlements = jsonDataLand[stateSelect.value][regionSelect.value];
-                        Object.keys(settlements).forEach(settlement => {
+                    const settlements = jsonDataLand[stateSelect.value][regionSelect.value];
+                    Object.keys(settlements).forEach(settlement => {
                             const option = new Option(settlement, settlement);
                             settlementSelect.appendChild(option);
-                        });
-                        settlementSelect.disabled = false;
+                    });
+                    settlementSelect.disabled = false;
                     }
                 });
-            });
+        });
         } else {
-            // Populate state select
-            Object.keys(jsonDataAll).forEach(state => {
+        // Populate state select
+        Object.keys(jsonDataAll).forEach(state => {
                 const option = new Option(state, state);
                 stateSelect.appendChild(option);
-            });
+        });
 
-            // Handle state select changes
-            stateSelect.addEventListener('change', () => {
+        // Handle state select changes
+        stateSelect.addEventListener('change', () => {
                 regionSelect.innerHTML = '<option value="">Район</option>';
                 regionSelect.disabled = true; // Disable region select until a state is chosen
                 settlementSelect.disabled = true;
@@ -394,8 +397,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (stateSelect.value) {
                     const regions = jsonDataAll[stateSelect.value];
                     Object.keys(regions).forEach(region => {
-                        const option = new Option(region, region);
-                        regionSelect.appendChild(option);
+                    const option = new Option(region, region);
+                    regionSelect.appendChild(option);
                     });
                     regionSelect.disabled = false; // Enable region select
                 }
@@ -405,25 +408,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     settlementSelect.disabled = true;
 
                     if (regionSelect.value) {
-                        const settlements = jsonDataAll[stateSelect.value][regionSelect.value];
-                        Object.keys(settlements).forEach(settlement => {
+                    const settlements = jsonDataAll[stateSelect.value][regionSelect.value];
+                    Object.keys(settlements).forEach(settlement => {
                             const option = new Option(settlement, settlement);
                             settlementSelect.appendChild(option);
-                        });
-                        settlementSelect.disabled = false;
+                    });
+                    settlementSelect.disabled = false;
                     }
                 });
-            });
+        });
         }
         sortLocationSelect();
     }
 
     document.querySelectorAll('input[type="radio"][name="Types"]').forEach(radio => {
         radio.addEventListener('change', function() {
-            if (this.checked) {
-                clickAllClearButtons();
-                updateSelects();
-            }
+        if (this.checked) {
+            clickAllClearButtons();
+            updateSelects();
+        }
         });
     });
 
@@ -465,11 +468,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         document.querySelectorAll('input[type=text]').forEach(input => input.value = '');
         radioButtons.forEach(radio => {
-            radio.checked = false;
-            var parentLabel = radio.closest('.w-radio');
-            if (parentLabel && parentLabel.classList.contains('fs-cmsfilter_active')) {
+        radio.checked = false;
+        var parentLabel = radio.closest('.w-radio');
+        if (parentLabel && parentLabel.classList.contains('fs-cmsfilter_active')) {
                 parentLabel.classList.remove('fs-cmsfilter_active');
-            }
+        }
         });
         updateSelects();
     }
@@ -484,18 +487,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateBackgroundImage(value) {
         var images = {
-            default: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca608423abfe721f9a07e_Default.webp",
-            flat: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca608f92d1a423c042655_Flat.webp",
-            commercial: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca608fe5c1939b0b62b7f_Commercial.webp",
-            house: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca60821d5068fcc8922f3_House.webp",
-            land: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca608e43eb3ad4fa12b87_Land.webp"
+        default: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca608423abfe721f9a07e_Default.webp",
+        flat: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca608f92d1a423c042655_Flat.webp",
+        commercial: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca608fe5c1939b0b62b7f_Commercial.webp",
+        house: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca60821d5068fcc8922f3_House.webp",
+        land: "https://assets-global.website-files.com/6620d5e5b99ee03c5496d49e/663ca608e43eb3ad4fa12b87_Land.webp"
         };
         heroCatalog.style.backgroundImage = 'url(' + images[value] + ')';
     }
 
     function resetSelectInputs() {
         document.querySelectorAll('.filter-select').forEach(select => {
-            select.selectedIndex = 0; // Reset to the first option, assuming the first option is a placeholder or default
+        select.selectedIndex = 0; // Reset to the first option, assuming the first option is a placeholder or default
         });
     }
 
@@ -510,18 +513,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.' + 'filters-' + selectedValue).style.display = 'block';
 
         switch (selectedValue) {
-            case 'flat':
+        case 'flat':
                 flJk.style.display = 'block';
                 filtersSquareMeters.style.display = 'block';
                 filtersPrice.style.display = 'block';
                 filtersSquareAcres.style.display = 'none';
                 break;
-            case 'land':
+        case 'land':
                 filtersSquareAcres.style.display = 'block';
                 filtersPrice.style.display = 'block';
                 filtersSquareMeters.style.display = 'none';
                 break;
-            default:
+        default:
                 flStreet.style.display = 'block';
                 filtersSquareMeters.style.display = 'block';
                 filtersPrice.style.display = 'block';
@@ -533,13 +536,15 @@ document.addEventListener('DOMContentLoaded', function() {
     radioButtons.forEach(function(radioButton) {
         radioButton.addEventListener('click', handleRadioButtonChange);
     });
-
-    clearLink.addEventListener('click', function(e) {
+    
+    setTimeout(function() {
+        clearLink.addEventListener('click', function(e) {
         e.preventDefault();
         clearFilters();
         hideAllFilters();
         updateBackgroundImage('default'); // Reset to default background on clear
-    });
+        });
+    }, 1000);
 
     // Initialize the form setup
     hideAllFilters(); // Set the default state
@@ -549,45 +554,45 @@ document.addEventListener('DOMContentLoaded', function() {
         var params = {};
         var queryString = location.search.slice(1);
         if (queryString) {
-            queryString.split("&").forEach(function(pair) {
+        queryString.split("&").forEach(function(pair) {
                 var [key, value] = pair.split("=");
                 if (key) {
                     params[key] = decodeURIComponent(value.replace(/\+/g, ' ')).trim();
                 }
-            });
+        });
         }
         const reverseObjectTranslation = {
-            "House": "Будинок",
-            "Commercial": "Комерція",
-            "Flat": "Квартира",
-            "Land": "Земля"
+        "House": "Будинок",
+        "Commercial": "Комерція",
+        "Flat": "Квартира",
+        "Land": "Земля"
         };
         params["object"] = reverseObjectTranslation[params["object"]];
 
         const reverseRegionTranslation = {
-            "KyivRegion": "Київська область",
-            "KyivCity": "м. Київ",
-            "VinnytsiaRegion": "Вінницька область",
-            "VolynRegion": "Волинська область",
-            "DnipropetrovskRegion": "Дніпропетровська область",
-            "ZhytomyrRegion": "Житомирська область",
-            "ZakarpattiaRegion": "Закарпатська область",
-            "ZaporizhzhiaRegion": "Запорізька область",
-            "IvanoFrankivskRegion": "Івано-Франківська область",
-            "KirovohradRegion": "Кіровоградська область",
-            "LvivRegion": "Львівська область",
-            "MykolaivRegion": "Миколаївська область",
-            "OdesaRegion": "Одеська область",
-            "PoltavaRegion": "Полтавська область",
-            "RivneRegion": "Рівненська область",
-            "SumyRegion": "Сумська область",
-            "TernopilRegion": "Тернопільська область",
-            "KharkivRegion": "Харківська область",
-            "KhersonRegion": "Херсонська область",
-            "KhmelnytskyiRegion": "Хмельницька область",
-            "CherkasyRegion": "Черкаська область",
-            "ChernivtsiRegion": "Чернівецька область",
-            "ChernihivRegion": "Чернігівська область"
+        "KyivRegion": "Київська область",
+        "KyivCity": "м. Київ",
+        "VinnytsiaRegion": "Вінницька область",
+        "VolynRegion": "Волинська область",
+        "DnipropetrovskRegion": "Дніпропетровська область",
+        "ZhytomyrRegion": "Житомирська область",
+        "ZakarpattiaRegion": "Закарпатська область",
+        "ZaporizhzhiaRegion": "Запорізька область",
+        "IvanoFrankivskRegion": "Івано-Франківська область",
+        "KirovohradRegion": "Кіровоградська область",
+        "LvivRegion": "Львівська область",
+        "MykolaivRegion": "Миколаївська область",
+        "OdesaRegion": "Одеська область",
+        "PoltavaRegion": "Полтавська область",
+        "RivneRegion": "Рівненська область",
+        "SumyRegion": "Сумська область",
+        "TernopilRegion": "Тернопільська область",
+        "KharkivRegion": "Харківська область",
+        "KhersonRegion": "Херсонська область",
+        "KhmelnytskyiRegion": "Хмельницька область",
+        "CherkasyRegion": "Черкаська область",
+        "ChernivtsiRegion": "Чернівецька область",
+        "ChernihivRegion": "Чернігівська область"
         };
         params["location"] = reverseRegionTranslation[params["location"]];
 
@@ -595,38 +600,38 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function setInputValues(params) {
-        var priceFromInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="from"]');
-        var priceToInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="to"]');
-        var areaFromInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="from"]');
-        var areaToInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="to"]');
-        var plotAreaFromInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="from"]');
-        var plotAreaToInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="to"]');
+    var priceFromInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="from"]');
+    var priceToInput = document.querySelector('input[fs-cmsfilter-field="price"][fs-cmsfilter-range="to"]');
+    var areaFromInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="from"]');
+    var areaToInput = document.querySelector('input[fs-cmsfilter-field="area"][fs-cmsfilter-range="to"]');
+    var plotAreaFromInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="from"]');
+    var plotAreaToInput = document.querySelector('input[fs-cmsfilter-field="plotarea"][fs-cmsfilter-range="to"]');
 
-        if (params.pricefrom && priceFromInput) {
-            priceFromInput.value = params.pricefrom;
-            priceFromInput.classList.add('fs-cmsfilter_active');
-        }
-        if (params.priceto && priceToInput) {
-            priceToInput.value = params.priceto;
-            priceToInput.classList.add('fs-cmsfilter_active');
-        }
-        if (params.areafrom && areaFromInput) {
-            areaFromInput.value = params.areafrom;
-            areaFromInput.classList.add('fs-cmsfilter_active');
-        }
-        if (params.areato && areaToInput) {
-            areaToInput.value = params.areato;
-            areaToInput.classList.add('fs-cmsfilter_active');
-        }
-        if (params.plotareafrom && plotAreaFromInput) {
-            plotAreaFromInput.value = (Number(params.plotareafrom) / 10000).toString();
-            plotAreaFromInput.classList.add('fs-cmsfilter_active');
-        }
-        if (params.plotareato && plotAreaToInput) {
-            plotAreaToInput.value = (Number(params.plotareato) / 10000).toString();
-            plotAreaToInput.classList.add('fs-cmsfilter_active');
-        }
+    if (params.pricefrom && priceFromInput) {
+        priceFromInput.value = params.pricefrom;
+        priceFromInput.classList.add('fs-cmsfilter_active');
     }
+    if (params.priceto && priceToInput) {
+        priceToInput.value = params.priceto;
+        priceToInput.classList.add('fs-cmsfilter_active');
+    }
+    if (params.areafrom && areaFromInput) {
+        areaFromInput.value = params.areafrom;
+        areaFromInput.classList.add('fs-cmsfilter_active');
+    }
+    if (params.areato && areaToInput) {
+        areaToInput.value = params.areato;
+        areaToInput.classList.add('fs-cmsfilter_active');
+    }
+    if (params.plotareafrom && plotAreaFromInput) {
+        plotAreaFromInput.value = (Number(params.plotareafrom) / 10000).toString();
+        plotAreaFromInput.classList.add('fs-cmsfilter_active');
+    }
+    if (params.plotareato && plotAreaToInput) {
+        plotAreaToInput.value = (Number(params.plotareato) / 10000).toString();
+        plotAreaToInput.classList.add('fs-cmsfilter_active');
+    }
+}
 
     // Get URL parameters
     var queryParams = getQueryParams();
@@ -638,19 +643,19 @@ document.addEventListener('DOMContentLoaded', function() {
         var objectValue = objectMapping[queryParams.object];
         var targetRadioButton = Array.from(radioButtons).find(radio => radio.value === objectValue);
         if (targetRadioButton) {
-            targetRadioButton.click();
+        targetRadioButton.click();
 
-            // Find the parent wrapper of the target radio button
-            var parentLabel = targetRadioButton.closest('.w-radio');
-            if (parentLabel) {
-                // Find the div with the class 'w-form-formradioinput' inside the parent wrapper
-                var radioInputDiv = parentLabel.querySelector('.w-form-formradioinput');
-                if (radioInputDiv) {
-                    // Add the class 'w--redirected-checked' to the div
-                    radioInputDiv.classList.add('w--redirected-checked');
-                }
+        // Find the parent wrapper of the target radio button
+        var parentLabel = targetRadioButton.closest('.w-radio');
+        if (parentLabel) {
+            // Find the div with the class 'w-form-formradioinput' inside the parent wrapper
+            var radioInputDiv = parentLabel.querySelector('.w-form-formradioinput');
+            if (radioInputDiv) {
+                // Add the class 'w--redirected-checked' to the div
+                radioInputDiv.classList.add('w--redirected-checked');
             }
-            handleRadioButtonChange();
+        }
+        handleRadioButtonChange();
         }
     }
 
@@ -661,25 +666,27 @@ document.addEventListener('DOMContentLoaded', function() {
         var matched = false;
 
         options.forEach(function(option, index) {
-            if (option.value === queryParams.location) {
-                selectElement.selectedIndex = index; // Set the select index directly
-                matched = true;
-                // Trigger change event
-                var event = new Event('change');
-                selectElement.dispatchEvent(event);
-            }
-        });
-
-        if (!matched) {
-            const option = new Option(queryParams.location, queryParams.location);
-            selectElement.appendChild(option);
-            selectElement.value = queryParams.location; // Set the new option as selected
+        if (option.value === queryParams.location) {
+            selectElement.selectedIndex = index; // Set the select index directly
+            matched = true;
             // Trigger change event
             var event = new Event('change');
             selectElement.dispatchEvent(event);
         }
+        });
+
+        if (!matched) {
+        const option = new Option(queryParams.location, queryParams.location);
+        selectElement.appendChild(option);
+        selectElement.value = queryParams.location; // Set the new option as selected
+        // Trigger change event
+        var event = new Event('change');
+        selectElement.dispatchEvent(event);
+        }
     }
-    if (queryParams.object) {} else {
+    if (queryParams.object){
+    }
+    else{
         clearFilters();
     }
 
