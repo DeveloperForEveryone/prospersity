@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 });
             });
-        } else if (selectedValue == "land") {
+        } else if (selectedValue == "Land") {
             // Populate state select
             Object.keys(jsonDataLand).forEach(state => {
                 const option = new Option(state, state);
@@ -418,7 +418,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         sortLocationSelect();
     }
-    setTimeout(function() {
+    //setTimeout(function() {
         document.querySelectorAll('input[type="radio"][name="Types"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 if (this.checked) {
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-    }, 2000);
+    //}, 2000);
 
     // all other
     var radioButtons = document.querySelectorAll('input[type="radio"][data-name="Types"]');
