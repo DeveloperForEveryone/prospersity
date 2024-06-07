@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var selectedValue = selectedRadio.value.toLowerCase();
         }
 
-        if (selectedValue == "commercial" || selectedValue == "house") {
+        if (selectedValue == "Commercial" || selectedValue == "House") {
             // Populate state select
             Object.keys(jsonDataStreets).forEach(state => {
                 const option = new Option(state, state);
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 });
             });
-        } else if (selectedValue == "flat") {
+        } else if (selectedValue == "Flat") {
             // Populate state select
             Object.keys(jsonDataJKs).forEach(state => {
                 const option = new Option(state, state);
@@ -559,38 +559,38 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         const reverseObjectTranslation = {
-            "house": "Будинок",
-            "commercial": "Комерція",
-            "flat": "Квартира",
-            "land": "Земля"
+            "House": "Будинок",
+            "Commercial": "Комерція",
+            "Flat": "Квартира",
+            "Land": "Земля"
         };
         params["object"] = reverseObjectTranslation[params["object"]];
 
         const reverseRegionTranslation = {
-            "kyivregion": "Київська область",
-            "kyivcity": "м. Київ",
-            "vinnytsiaregion": "Вінницька область",
-            "volynregion": "Волинська область",
-            "dnipropetrovskregion": "Дніпропетровська область",
-            "zhytomyrregion": "Житомирська область",
-            "zakarpattiaregion": "Закарпатська область",
-            "zaporizhzhiaregion": "Запорізька область",
-            "ivanofrankivskregion": "Івано-Франківська область",
-            "kirovohradregion": "Кіровоградська область",
-            "lvivregion": "Львівська область",
-            "mykolaivregion": "Миколаївська область",
-            "odesaregion": "Одеська область",
-            "poltavaregion": "Полтавська область",
-            "rivneregion": "Рівненська область",
-            "sumyregion": "Сумська область",
-            "ternopilregion": "Тернопільська область",
-            "kharkivregion": "Харківська область",
-            "khersonregion": "Херсонська область",
-            "khmelnytskyiregion": "Хмельницька область",
-            "cherkasyregion": "Черкаська область",
-            "chernivtsiregion": "Чернівецька область",
-            "chernihivregion": "Чернігівська область"
-        };
+            "KyivRegion": "Київська область",
+            "KyivCity": "м. Київ",
+            "VinnytsiaRegion": "Вінницька область",
+            "VolynRegion": "Волинська область",
+            "DnipropetrovskRegion": "Дніпропетровська область",
+            "ZhytomyrRegion": "Житомирська область",
+            "ZakarpattiaRegion": "Закарпатська область",
+            "ZaporizhzhiaRegion": "Запорізька область",
+            "IvanoFrankivskRegion": "Івано-Франківська область",
+            "KirovohradRegion": "Кіровоградська область",
+            "LvivRegion": "Львівська область",
+            "MykolaivRegion": "Миколаївська область",
+            "OdesaRegion": "Одеська область",
+            "PoltavaRegion": "Полтавська область",
+            "RivneRegion": "Рівненська область",
+            "SumyRegion": "Сумська область",
+            "TernopilRegion": "Тернопільська область",
+            "KharkivRegion": "Харківська область",
+            "KhersonRegion": "Херсонська область",
+            "KhmelnytskyiRegion": "Хмельницька область",
+            "CherkasyRegion": "Черкаська область",
+            "ChernivtsiRegion": "Чернівецька область",
+            "ChernihivRegion": "Чернігівська область"
+         };
         params["location"] = reverseRegionTranslation[params["location"]];
 
         return params;
